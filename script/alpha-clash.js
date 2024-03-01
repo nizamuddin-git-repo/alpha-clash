@@ -7,6 +7,54 @@
 // }
 
 
+function handleKeybordKeyUpEvent(event){
+    const playerPressed = event.key;
+    console.log('player pressed', playerPressed);
+
+    // get tha key player expected to press
+    const currentAlphabetElement = document.getElementById('current-alphabet');
+    const currentAlphabet = currentAlphabetElement.innerText;
+    const expectedAlphabet = currentAlphabet.toLocaleLowerCase();
+    console.log(playerPressed, currentAlphabet);
+
+    // chek  right or wrong key pressed
+    if(playerPressed === expectedAlphabet){
+        console.log('you get a point');
+        // update score:
+        // get tha current score
+        const currentScoreElement = document.getElementById('current-score');
+        const currentScoreText = currentScoreElement.innerText;
+        const currentScore = parseInt(currentScoreText);
+        console.log(currentScore);
+
+        // 2  .incrase tha score by 1
+
+        const newScore = currentScore + 1;
+
+        // 3. show tha score by 1
+
+        currentScoreElement.innerText = newScore;
+
+        removeBackgroundColorById(expectedAlphabet)
+        continueGame();
+    }
+    else{
+        console.log('you missed. you lost a life');
+        // stap- 1 : get current life numbar
+        const currentLifeElement = document.getElementById('current-life')
+        const currentLifeText = currentLifeElement.innerText;
+        const currentLife = parseInt(currentLifeText);
+
+        // stap -2 reduce tha life count 
+
+        const newLife = currentLife - 1;
+
+        currentLifeElement.innerText = newLife;
+    }
+}
+
+document.addEventListener('keyup', handleKeybordKeyUpEvent)
+
 function continueGame() {
     // stap -1 generate a random alphabet
     const alphabet = getArandomAlphabet();
@@ -19,7 +67,6 @@ function continueGame() {
 
     // set background color
     setBackgroundColorById(alphabet);
-
 
 }
 
