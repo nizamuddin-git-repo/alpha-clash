@@ -31,6 +31,11 @@ function getTextElementValueById(elementId){
     element.innerText = value;
  }
 
+ function getElementTextById(elementId){
+    const element = document.getElementById(elementId);
+    const text = element.innerText;
+    return text;
+ }
 
 
 
